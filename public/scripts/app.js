@@ -57,15 +57,15 @@ var data = [
   }
 ];
 
-$(document).ready(function() {
 
-   function createTweetElement (tweetObj) {
-    $tweet = $("<article>").addClass("tweet");
+function createTweetElement (tweetObj) {
+    $tweet = $("<section>").addClass("tweets-container");
      let html = `
+      <section class="tweets-container" action="/tweets" method="post">
         <article class="tweet">
           <header>
             <img class="avatar" src=${tweetObj.user.avatars.small}  >
-            <span class="user-name" ><b>${tweetObj.user.name}</b></span>
+            <span class="user-name"><b>${tweetObj.user.name}</b></span>
             <span class="user-handle" >${tweetObj.user.handle}</span>
           </header>
           <section class="tweet-content">
@@ -79,6 +79,8 @@ $(document).ready(function() {
                 <i class="fa fa-heart" aria-hidden="true"></i>
                  </actions>
               </footer>
+             </section>
+            <div class="tweet-buffer"></div>
      `;
       $tweet = $tweet.append(html);
     return $tweet;
@@ -87,12 +89,25 @@ $(document).ready(function() {
   function renderTweets(tweets) {
     tweets.forEach((tweet)=> {
       var a = createTweetElement(tweet);
-      $(".treehouse").append(a);
+      $(".container").append(a);
     });
   }
 
-  renderTweets(data);
+function processForm(event) {
+   event.preventDefault();
+   $.ajax({
+     method: "POST",
+     url: "/tweets",
+     data: $( this ).serialize()
+  })
+  .done(function() {
+     $(".new-tweet").find("textArea").val("");
+   });
+ }
 
-});
+$(document).ready(function(){
+    renderTweets(data);
+ +  $( "form" ).on( "submit", processForm);
+  });
 
 
