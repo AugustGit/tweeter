@@ -2,23 +2,57 @@
  * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
- */
+
 html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+;
 }
 
 /*
  * Global layout stuff
  */
 
+
 body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  font-family: 'Roboto Condensed', sans-serif;
+ /* were we supposed to add code to direct to the page to download this font if unavailable?  */
 }
+
+main {
+  background-color: white;
+  margin: 0 auto;
+  height: 700px;
+  width: 700px;
+  padding-top: 140px;
+
+}
+
+.treehouse {
+  position:relative;
+  margin: 0 auto;
+  height: 150px;
+  width: 500px;
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border: 1px solid;
+  border-radius: 0.5em;
+  background-color: white ;
+}
+#article .avatar {
+  position: relative ;
+  float: left;
+  height: 25px;
+  width: 25px;
+}
+
+
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions

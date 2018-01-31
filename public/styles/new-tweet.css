@@ -1,0 +1,40 @@
+.new-tweet {
+  position:relative;
+  margin: 0 auto;
+  height: 150px;
+  width: 500px;
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border: 1px solid;
+  border-radius: 0.5em;
+  background-color: #eee ;
+
+
+}
+ .new-tweet h2 {
+    margin: 0;
+    border-bottom: 1px solid black;
+    margin-bottom: 1em;
+
+  }
+
+
+  .new-tweet .text-area {
+   width: 100%;
+   bottom: 20px;
+  }
+
+  .new-tweet .tweet-submit {
+    position: absolute;
+    left:2em;
+    bottom: 1em;
+  }
+
+  .new-tweet .tweet-char-counter{
+    right: 2em;
+    bottom: 1em;
+    position:absolute;
+  }
+
+
