@@ -60,15 +60,9 @@ var data = [
 $(document).ready(function() {
 
    function createTweetElement (tweetObj) {
-
-     var header = $("<header>")
-    .append($("<span>").addClass("avatar").css('background-image', 'url(' + tweetData.user.avatars.small + ')'))
-    .append($("<span>").addClass("user-name").text(tweetData.user.name))
-    .append($("<span>").addClass("user-handle").text(tweetData.user.handle));
-
+    $tweet = $("<article>").addClass("tweet");
      let html = `
-  <section class="treehouse" action="/tweets" method="post">
-        <article>
+        <article class="tweet">
           <header>
             <img class="avatar" src=${tweetObj.user.avatars.small}  >
             <span class="user-name" ><b>${tweetObj.user.name}</b></span>
@@ -85,51 +79,20 @@ $(document).ready(function() {
                 <i class="fa fa-heart" aria-hidden="true"></i>
                  </actions>
               </footer>
-          </section>
-     `
-     $tweet = $("<article>").addClass("tweet");
-     return $tweet.append(html);
+     `;
+      $tweet = $tweet.append(html);
+    return $tweet;
   }
 
-   var $tweet = createTweetElement(tweetData);
-
-   // Test / driver code (temporary)
-   console.log($tweet); // to see what it looks like
-   $('.treehouse').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
- });
-/*
-function iconIsert(iconClass) {
-  return $("<span>").addClass("fa " + iconClass).attr("aria-hidden", "true");
-}
-
-function createTweetElement(tweetData) {
-  var $tweet = $("<article>").addClass("tweet");
-  var header = $("<header>")
-    .append($("<span>").addClass("avatar").css('background-image', 'url(' + tweetData.user.avatars.small + ')'))
-    .append($("<span>").addClass("user-name").text(tweetData.user.name))
-    .append($("<span>").addClass("user-handle").text(tweetData.user.handle));
-   $tweet.append(header);
-   $tweet.append($("<p>").addClass("tweet-text").text(tweetData.content.text));
-  /* var icons = $("<span>").addClass("actions")
-     .append(iconInsert("fa-flag"))
-     .append(iconInsert("fa-retweet"))
-     .append(iconInsert("fa-heart"));
-   var footer = $("<footer>")
-     .append($("<span>").addClass("tweet-time").text("10 days agao"))
-     //.append(icons);
-   $tweet.append(footer);
-   return $tweet;
- }
-//
-function renderTweets(data) {
-  var treehouse = $('.treehouse');
-  for(var i = 0; i < data.length; i++) {
-    treehouse.append(createTweetElement(data[i]));
+  function renderTweets(tweets) {
+    tweets.forEach((tweet)=> {
+      var a = createTweetElement(tweet);
+      $(".treehouse").append(a);
+    });
   }
-}
-(document).ready(function(){
-   renderTweets(data);
-  });
-*/
-  // Test / driver code (temporary)
+
+  renderTweets(data);
+
+});
+
 

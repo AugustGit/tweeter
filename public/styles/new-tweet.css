@@ -1,4 +1,4 @@
-.new-tweet {
+.newTweet {
   position:relative;
   margin: 0 auto;
   border: 1px solid black;
@@ -12,7 +12,7 @@
 
 
 }
- .new-tweet h2 {
+ .newTweet h2 {
     padding-top: 5px;
     padding-left: 15px;
     border-bottom: 1px solid black;
@@ -22,20 +22,20 @@
   }
 
 
-  .new-tweet .text-area {
+  .newTweet .text-area {
     position: relative;
   left : 22px;
    width: 450px;
    bottom: 20px;
   }
 
-  .new-tweet .tweet-submit {
+  .newTweet .tweet-submit {
     position: absolute;
     left:2em;
     bottom: 1em;
   }
 
-  .new-tweet .tweet-char-counter{
+  .newTweet .tweet-char-counter{
     right: 2em;
     bottom: 1em;
     position:absolute;
