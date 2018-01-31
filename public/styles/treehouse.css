@@ -35,10 +35,9 @@
   border-radius: 0.5em;
 }
 
-.treehouse header .user-name {
-    position: absolute ;
+.treehouse .user-name {
     top: -12px;
-    left: 70px;
+    padding-left: 70px;
     font-size: 2em;
     line-height: 80px;
     color: #7A7C8B  ;
