@@ -1,8 +1,10 @@
+.tweet-buffer {
+  height: 15px;
+}
 
 .treehouse {
   margin: 0 auto;
   position: relative;
-  height: 180px;
   width: 500px;
   border: 1px solid #B6B7C1  ;
   border-radius: 0.5em;
@@ -25,6 +27,7 @@
 }
 
 .treehouse .avatar {
+  background-image: "./images/cat.jpg";
   position: absolute ;
   padding: 5px 5px;
   height: 50px;
@@ -68,10 +71,10 @@ font-family: "Roboto Condensed":
   font-weight:300i;
   font-color:  #7A7C8B;
   font-size: small;
-
 }
+
 .treehouse  .user-tweet-response {
   position: absolute;
  right: 10px;
  padding: 15px 15px;
- +}
+}

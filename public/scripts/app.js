@@ -10,23 +10,31 @@ $( document ).ready(function() {
   };
 });
 
-function
-$( document ).ready(function() {
-  console.log( "ready!" );
+var tweetData = {
+  "user": {
+    "name": "Newton",
+    "avatars": {
+      "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+      "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+    },
+    "handle": "@SirIsaac"
+  },
+  "content": {
+    "text": "If I have seen further it is by standing on the shoulders of giants"
+  },
+  "created_at": 1461116232227
+};
 
-var $tweet =$('.teehouse'.addClass("tweet");
 
-
-function createTweetElement( )
-
-const data = [
+var data = [
   {
     "user": {
       "name": "Newton",
       "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+        "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
         "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+        "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
       },
       "handle": "@SirIsaac"
     },
@@ -39,9 +47,9 @@ const data = [
     "user": {
       "name": "Descartes",
       "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
+        "small": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
         "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
+        "large": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
       },
       "handle": "@rd" },
     "content": {
@@ -49,10 +57,13 @@ const data = [
     },
     "created_at": 1461113959088
   },
-  {pv l;
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+  {
+    "user": {
+      "name": "Johann von Goethe",
+      "avatars": {
+        "small": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
         "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+        "large": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
       },
       "handle": "@johann49"
     },
@@ -63,29 +74,74 @@ const data = [
   }
 ];
 
-function iconInsert(iconClass) {
- +  return $("<span>").addClass("fa " + iconClass).attr("aria-hidden", "true");
+$(document).ready(function() {
+
+   function createTweetElement (tweetObj) {
+     let html = `
+       <header>
+         <img src=${tweetObj.user.avatars.small} alt="bird" />
+         <h1>${tweetObj.user.name}</h1>
+        <h2>${tweetObj.user.handle}</h2>
+       </header>
+       <div class="tweet-body">
+         <p>
+           ${tweetObj.content.text}
+         </p>
+       </div>
+       <footer>
+         <p>
+        ${tweetObj.created_at}
+         </p>
+         <span>
+          <i class="fa fa-flag" aria-hidden="true"></i>
+           <i class="fa fa-retweet" aria-hidden="true"></i>
+           <i class="fa fa-heart" aria-hidden="true"></i>
+         </span>
+       </footer>
+     `;
+     $tweet = $("<article>").addClass("tweet");
+     return $tweet.append(html);
+  }
+
+   var $tweet = createTweetElement(tweetData);
+
+   // Test / driver code (temporary)
+   console.log($tweet); // to see what it looks like
+   $('.treehouse').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+ });
+/*
+function iconIsert(iconClass) {
+  return $("<span>").addClass("fa " + iconClass).attr("aria-hidden", "true");
+}
 
 function createTweetElement(tweetData) {
   var $tweet = $("<article>").addClass("tweet");
   var header = $("<header>")
-    .append($("<img>").addClass("avatar").css('background-image', 'url(' + tweetData.user.avatars.small + ')'))
+    .append($("<span>").addClass("avatar").css('background-image', 'url(' + tweetData.user.avatars.small + ')'))
     .append($("<span>").addClass("user-name").text(tweetData.user.name))
     .append($("<span>").addClass("user-handle").text(tweetData.user.handle));
    $tweet.append(header);
    $tweet.append($("<p>").addClass("tweet-text").text(tweetData.content.text));
-   var actions = $("<span>").addClass("actions")
+  /* var icons = $("<span>").addClass("actions")
      .append(iconInsert("fa-flag"))
      .append(iconInsert("fa-retweet"))
      .append(iconInsert("fa-heart"));
    var footer = $("<footer>")
      .append($("<span>").addClass("tweet-time").text("10 days agao"))
-     .append(actions);
+     //.append(icons);
    $tweet.append(footer);
    return $tweet;
  }
+//
+function renderTweets(data) {
+  var treehouse = $('.treehouse');
+  for(var i = 0; i < data.length; i++) {
+    treehouse.append(createTweetElement(data[i]));
+  }
+}
+(document).ready(function(){
+   renderTweets(data);
+  });
+*/
+  // Test / driver code (temporary)
 
-var $tweet = createTweetElement(tweetData);
-
-console.log($tweet); // to see what it looks like
-$('#tweets-container').append($tweet);
