@@ -10,23 +10,6 @@ $( document ).ready(function() {
   };
 });
 
-var tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": {
-      "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-    },
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-};
-
-
 var data = [
   {
     "user": {
@@ -77,28 +60,33 @@ var data = [
 $(document).ready(function() {
 
    function createTweetElement (tweetObj) {
+
+     var header = $("<header>")
+    .append($("<span>").addClass("avatar").css('background-image', 'url(' + tweetData.user.avatars.small + ')'))
+    .append($("<span>").addClass("user-name").text(tweetData.user.name))
+    .append($("<span>").addClass("user-handle").text(tweetData.user.handle));
+
      let html = `
-       <header>
-         <img src=${tweetObj.user.avatars.small} alt="bird" />
-         <h1>${tweetObj.user.name}</h1>
-        <h2>${tweetObj.user.handle}</h2>
-       </header>
-       <div class="tweet-body">
-         <p>
-           ${tweetObj.content.text}
-         </p>
-       </div>
-       <footer>
-         <p>
-        ${tweetObj.created_at}
-         </p>
-         <span>
-          <i class="fa fa-flag" aria-hidden="true"></i>
-           <i class="fa fa-retweet" aria-hidden="true"></i>
-           <i class="fa fa-heart" aria-hidden="true"></i>
-         </span>
-       </footer>
-     `;
+  <section class="treehouse" action="/tweets" method="post">
+        <article>
+          <header>
+            <img class="avatar" src=${tweetObj.user.avatars.small}  >
+            <span class="user-name" ><b>${tweetObj.user.name}</b></span>
+            <span class="user-handle" >${tweetObj.user.handle}</span>
+          </header>
+          <section class="tweet-content">
+            <p class="tweet-text">  ${tweetObj.content.text}</p>
+              <footer>
+                <p class="time-stamp">  </p>
+                   ${tweetObj.created_at}
+                 <actions class="user-tweet-response">
+              <i class="fa fa-flag" aria-hidden="true"></i>
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                 </actions>
+              </footer>
+          </section>
+     `
      $tweet = $("<article>").addClass("tweet");
      return $tweet.append(html);
   }
