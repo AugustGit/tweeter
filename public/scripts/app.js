@@ -3,13 +3,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+ /*
 $( document ).ready(function() {
  $.fn.log = function() {
     console.log.apply(console, this);
     return this;
   };
 });
-
+*/
+/*
 var data = [
   {
     "user": {
@@ -57,9 +59,10 @@ var data = [
   }
 ];
 
-
+*/
+$( document ).ready(function() {
 function createTweetElement (tweetObj) {
-    $tweet = $("<section>").addClass("tweets-container");
+    $tweet = $("<article>").addClass("tweet");
      let html = `
       <section class="tweets-container" action="/tweets" method="post">
         <article class="tweet">
@@ -87,27 +90,35 @@ function createTweetElement (tweetObj) {
   }
 
   function renderTweets(tweets) {
-    tweets.forEach((tweet)=> {
-      var a = createTweetElement(tweet);
-      $(".container").append(a);
-    });
-  }
+   const tweetLog = $('.tweets-container');
+      for(let tweet in tweets) {
+        console.log(tweets[tweet])
+      tweetLog.append(createTweetElement(tweets[tweet]));
+    }
+  };
 
-function processForm(event) {
-   event.preventDefault();
-   $.ajax({
-     method: "POST",
-     url: "/tweets",
-     data: $( this ).serialize()
-  })
-  .done(function() {
-     $(".new-tweet").find("textArea").val("");
-   });
- }
+       var $submit = $('#tweetbox');
+       $submit.on('submit', function (event) {
+         console.log('Tweet submittted, calling ajax');
+            event.preventDefault();
+        var formDataStr = $(this).serialize();
+         console.log($(this).serialize());
+         $.ajax({
+          url: `/tweets`,
+           method: 'POST',
+           data: formDataStr,
+           success: function () {
+               $('#tweet-area').val('');
+     $.ajax({
+          url: `/tweets`,
+           method: 'GET',
+           success: function (data) {
+            console.log("data", data);
 
-$(document).ready(function(){
-    renderTweets(data);
- +  $( "form" ).on( "submit", processForm);
-  });
-
-
+             renderTweets(data);
+           }
+         });
+       }
+       });
+      });
+});
