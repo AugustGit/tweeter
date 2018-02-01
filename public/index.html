@@ -44,9 +44,10 @@
 
       <section class="new-tweet">
         <h2 class="h2">Compose Tweet</h2>
-
+          <span id="tweet-error" > </span>
         <form id="tweetbox" class="tweetbox" action="/tweets" method="post" >
-          <textarea id="tweet-area" class="text-area" name="text" placeholder=  "What are you humming about?"></textarea>
+
+          <textarea id="text-area" class="text-area" name="text" placeholder=  "What are you humming about?"></textarea>
           <input id="tweet-submit"  class="tweet-submit" type="submit" value="Tweet">
           <span class="tweet-char-counter" ="counter">140</span>
         </form>

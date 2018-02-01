@@ -1,4 +1,6 @@
 
+
+
 $( document ).ready(function() {
   function createTweetElement (tweetObj) {
     $tweet = $("<article>").addClass("tweet");
@@ -34,11 +36,14 @@ $( document ).ready(function() {
    for(let tweet in tweets) {
     tweetLog.append(createTweetElement(tweets[tweet]));
    }
+  let textArea = $('#text-area')
+   textArea.append(null);
   }
 
   function clearTweets(){
     const tweetLog = $('.tweets-container');
     tweetLog.empty()
+
   }
 
   function postTweets(formDataStr){
@@ -47,7 +52,7 @@ $( document ).ready(function() {
     method: 'POST',
     data: formDataStr,
     success: function () {
-     $('#tweet-area').val('');
+     $('#text-area').val('');
       getTweets()
               }
    })
@@ -65,12 +70,49 @@ $( document ).ready(function() {
   }
 
   var $submit = $('#tweetbox');
+//console.log($('#tweetbox'))
+/*n.fn.init [form#tweetbox.tweetbox, context: document, selector: "#tweetbox"]
+0:form#tweetbox.tweetbox
+  0:textarea#text-area.text-area
+    accessKey:""
+    assignedSlot:null
+*/
   $submit.on('submit', function (event) {
-   console.log('Tweet submittted, calling ajax');
    event.preventDefault();
-   var formDataStr = $(this).serialize();
-   console.log($(this).serialize());
+    var formDataStr = $(this).serialize();
+var splits = formDataStr.split("=")
+console.log(splits[1] )
+if(splits[1] == ""){
+  alert("your tweet is empty")
+  console.log("tweet is empty")
+  return
+} else if (splits[1].length > 140){
+alert("your tweet is too long")
+console.log("tweet too long")
+return
+} else {
    postTweets(formDataStr)
+ return
+  }
  });
   getTweets()
 });
+
+/*
+function isTweetValid() {
+   var count = $(".tweet-char-counter")
+    if(count = 0) {
+      event.preventDefault();
+      $('#tweet-error').append("your tweet is empty");
+   } else if (count  > 140) {
+    event.preventDefault();
+      $('#tweet-error').append("tweet must be less than 140 characters")
+    } else {
+    var $submit = $('#tweetbox');
+    $submit.on('submit', function (event) {
+        event.preventDefault();
+        var formDataStr = $(this).serialize();
+        postTweets(formDataStr)
+        });
+      }
+*/

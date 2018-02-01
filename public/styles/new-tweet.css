@@ -21,7 +21,10 @@
 
   }
 
+ .new-tweet .tweet-error {
+    position: relative;
 
+  }
   .new-tweet .text-area {
     position: relative;
   left : 22px;
