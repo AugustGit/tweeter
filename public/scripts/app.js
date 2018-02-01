@@ -34,7 +34,7 @@ $( document ).ready(function() {
    clearTweets()
    const tweetLog = $('.tweets-container');
    for(let tweet in tweets) {
-    tweetLog.append(createTweetElement(tweets[tweet]));
+    tweetLog.prepend(createTweetElement(tweets[tweet]));
    }
   let textArea = $('#text-area')
    textArea.append(null);
