@@ -1,124 +1,76 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
- /*
-$( document ).ready(function() {
- $.fn.log = function() {
-    console.log.apply(console, this);
-    return this;
-  };
-});
-*/
-/*
-var data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
 
-*/
 $( document ).ready(function() {
-function createTweetElement (tweetObj) {
+  function createTweetElement (tweetObj) {
     $tweet = $("<article>").addClass("tweet");
-     let html = `
-      <section class="tweets-container" action="/tweets" method="post">
-        <article class="tweet">
-          <header>
-            <img class="avatar" src=${tweetObj.user.avatars.small}  >
-            <span class="user-name"><b>${tweetObj.user.name}</b></span>
-            <span class="user-handle" >${tweetObj.user.handle}</span>
-          </header>
-          <section class="tweet-content">
-            <p class="tweet-text">  ${tweetObj.content.text}</p>
-              <footer>
-                <p class="time-stamp">  </p>
-                   ${tweetObj.created_at}
-                 <actions class="user-tweet-response">
-              <i class="fa fa-flag" aria-hidden="true"></i>
-                <i class="fa fa-retweet" aria-hidden="true"></i>
-                <i class="fa fa-heart" aria-hidden="true"></i>
-                 </actions>
-              </footer>
-             </section>
-            <div class="tweet-buffer"></div>
-     `;
-      $tweet = $tweet.append(html);
+    let tweetInfo = `
+    <section class="tweets-container" action="/tweets" method="post">
+    <article class="tweet">
+    <header>
+    <img class="avatar" src=${tweetObj.user.avatars.small}  >
+    <span class="user-name"><b>${tweetObj.user.name}</b></span>
+    <span class="user-handle" >${tweetObj.user.handle}</span>
+    </header>
+    <section class="tweet-content">
+    <p class="tweet-text">  ${tweetObj.content.text}</p>
+    <footer>
+    <p class="time-stamp">  </p>
+    ${tweetObj.created_at}
+    <actions class="user-tweet-response">
+    <i class="fa fa-flag" aria-hidden="true"></i>
+    <i class="fa fa-retweet" aria-hidden="true"></i>
+    <i class="fa fa-heart" aria-hidden="true"></i>
+    </actions>
+    </footer>
+    </section>
+    <div class="tweet-buffer"></div>
+    `;
+    $tweet = $tweet.append(tweetInfo);
     return $tweet;
   }
 
   function renderTweets(tweets) {
+   clearTweets()
    const tweetLog = $('.tweets-container');
-      for(let tweet in tweets) {
-        console.log(tweets[tweet])
-      tweetLog.append(createTweetElement(tweets[tweet]));
-    }
-  };
+   for(let tweet in tweets) {
+    tweetLog.append(createTweetElement(tweets[tweet]));
+   }
+  }
 
-       var $submit = $('#tweetbox');
-       $submit.on('submit', function (event) {
-         console.log('Tweet submittted, calling ajax');
-            event.preventDefault();
-        var formDataStr = $(this).serialize();
-         console.log($(this).serialize());
-         $.ajax({
-          url: `/tweets`,
-           method: 'POST',
-           data: formDataStr,
-           success: function () {
-               $('#tweet-area').val('');
-     $.ajax({
-          url: `/tweets`,
-           method: 'GET',
-           success: function (data) {
-            console.log("data", data);
+  function clearTweets(){
+    const tweetLog = $('.tweets-container');
+    tweetLog.empty()
+  }
 
-             renderTweets(data);
-           }
-         });
-       }
-       });
-      });
+  function postTweets(formDataStr){
+   $.ajax({
+    url: `/tweets`,
+    method: 'POST',
+    data: formDataStr,
+    success: function () {
+     $('#tweet-area').val('');
+      getTweets()
+              }
+   })
+  }
+
+  function getTweets(){
+    $.ajax({
+      url: `/tweets`,
+      method: 'GET',
+      success: function (data) {
+        console.log(data)
+        renderTweets(data);
+      }
+    });
+  }
+
+  var $submit = $('#tweetbox');
+  $submit.on('submit', function (event) {
+   console.log('Tweet submittted, calling ajax');
+   event.preventDefault();
+   var formDataStr = $(this).serialize();
+   console.log($(this).serialize());
+   postTweets(formDataStr)
+ });
+  getTweets()
 });
