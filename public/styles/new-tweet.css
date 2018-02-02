@@ -1,4 +1,5 @@
 .new-tweet {
+  display:hidden;
   position:relative;
   margin: 0 auto;
   border: 1px solid black;
@@ -21,13 +22,10 @@
 
   }
 
- .new-tweet .tweet-error {
-    position: relative;
 
-  }
   .new-tweet .text-area {
     position: relative;
-  left : 22px;
+    left : 22px;
    width: 450px;
    bottom: 20px;
   }
