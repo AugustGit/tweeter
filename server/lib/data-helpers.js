@@ -3,28 +3,17 @@
 // Simulates the kind of delay we see with network or filesystem operations
 
 
-
 module.exports = function makeDataHelpers(db) {
    let database = db
   return {
 
-    // Saves a tweet to `db`
-/*    saveTweet: function(newTweet, callback) {
-      simulateDelay(() => {
-        db.tweets.push(newTweet);
-        callback(null, true);
-      });
-    },
-
     saveTweet: function(newTweet, callback) {
-       db.collection("tweets").insertOne(newTweet) {
-        assert.equal(null, err);
-        assert.equal(1, r.insertedCount);
-      }
-    }
-*/
+    database.collection("tweets").insertOne(newTweet);
+      callback(null, true)
+     },
+
     getTweets: function(callback) {
-    db.collection("tweets").find().toArray((err, tweets) => {
+    database.collection("tweets").find().toArray((err, tweets) => {
     if (err){
       return callback(err);
     }
@@ -41,6 +30,20 @@ module.exports = function makeDataHelpers(db) {
 
 
 /*
+
+ db.collection('inserts').insertOne({
+        a:1
+      , b: function() { return 'hello'; }
+    }, {
+        w: 'majority'
+      , wtimeout: 10000
+      , serializeFunctions: true
+    }, function(err, r) {
+    assert.equal(null, err);
+    assert.equal(1, r.insertedCount);
+    db.close();
+  });
+
 collections are selected with db.collection("collection-name") (not db.collection-name)
 
 
