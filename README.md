@@ -6,7 +6,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Screenshots
 Tweets that are too long show the negative character count in red and give an error message until you have shorted to 140characters.
-!"https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true"
+!["https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true")
 
 
 ## Getting Started
