@@ -5,7 +5,7 @@ Tweeter is a simple, single-page Twitter clone.
 This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
 
 ## Screenshots
-![Tweets that are too long show the negative character count in red and give an error message until you have shorted to 140characters.]("https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true")
+![Tweets that are too long show the negative character count in red and give an error message until you have shorted to 140characters.](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
 
 
 ## Getting Started
