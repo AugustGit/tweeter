@@ -14,26 +14,25 @@ $("#compose").click(function(){
   function createTweetElement (tweetObj) {
     $tweet = $("<article>").addClass("tweet");
     let tweetInfo = `
-    <section class="tweets-container" action="/tweets" method="post">
-    <article class="tweet">
-    <header>
-    <img class="avatar" src=${tweetObj.user.avatars.small}  >
-    <span class="user-name"><b>${tweetObj.user.name}</b></span>
-    <span class="user-handle" >${tweetObj.user.handle}</span>
-    </header>
-    <section class="tweet-content">
-    <p class="tweet-text">  ${escape(tweetObj.content.text)}</p>
-    <footer>
-    <p class="time-stamp">  </p>
-    ${tweetObj.created_at}
-    <actions class="user-tweet-response">
-    <i class="fa fa-flag" aria-hidden="true"></i>
-    <i class="fa fa-retweet" aria-hidden="true"></i>
-    <i class="fa fa-heart" aria-hidden="true"></i>
-    </actions>
-    </footer>
-    </section>
-    <div class="tweet-buffer"></div>
+
+
+          <header>
+            <img class="avatar" src=${tweetObj.user.avatars.small}  >
+            <span class="user-name"><b>${tweetObj.user.name}</b></span>
+            <span class="user-handle">${tweetObj.user.handle}</span>
+          </header>
+        <p class="tweet-text">  ${escape(tweetObj.content.text)}</p>
+       <footer>
+         <p id="time-stamp" class="time-stamp">  </p>
+          ${tweetObj.created_at}
+          <actions class="user-tweet-response">
+            <i class="fa fa-flag" aria-hidden="true"></i>
+            <i class="fa fa-retweet" aria-hidden="true"></i>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          </actions>
+        </footer>
+
+
     `;
     $tweet = $tweet.append(tweetInfo);
     return $tweet;
@@ -97,7 +96,7 @@ $("#compose").click(function(){
     $('#tweet-error').text(errorMessage)
     } else {
       postTweets($(this).serialize())
-
+      $('#tweet-error').text("")
   }
  });
 

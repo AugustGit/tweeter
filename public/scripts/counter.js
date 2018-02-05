@@ -3,9 +3,9 @@
 $( document ).ready(function() {
     //console.log( "ready!" );
    var charRemaining = 140
-   $('#tweet-area').on('keypress', function() {
+   $('#text-area').on('keypress', function() {
     //console.log('#tweet-area')
-     var tweetLength = $('#tweet-area').val().length;
+     var tweetLength = $('#text-area').val().length;
      charRemaining  = 139 - tweetLength
 
      if(charRemaining >= 0){
