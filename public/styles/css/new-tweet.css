@@ -1,0 +1,35 @@
+.new-tweet {
+  position: relative;
+  margin: 15px auto;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  background-color: #eee;
+  height: 180px;
+  width: 500px; }
+
+.new-tweet h2 {
+  padding-top: 5px;
+  padding-left: 15px;
+  border-bottom: 1px solid black;
+  margin-bottom: 1.5em; }
+
+.new-tweet .tweet-error {
+  position: relative; }
+
+.new-tweet .text-area {
+  position: relative;
+  left: 22px;
+  width: 450px;
+  bottom: 20px; }
+
+.new-tweet .tweet-submit {
+  position: absolute;
+  left: 2em;
+  bottom: 1em; }
+
+.new-tweet .tweet-char-counter {
+  right: 2em;
+  bottom: 1em;
+  position: absolute; }
+
+/*# sourceMappingURL=new-tweet.css.map */

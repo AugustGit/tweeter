@@ -1,6 +1,9 @@
 
 // A $( document ).ready() block.
 $( document ).ready(function() {
+  var newTweet = $(".new-tweet");
+  var counter = newTweet.find(".tweet-char-counter");
+  var textArea = newTweet.find("textArea");
     //console.log( "ready!" );
    var charRemaining = 140
    $('#text-area').on('keypress', function() {
@@ -10,6 +13,7 @@ $( document ).ready(function() {
 
      if(charRemaining >= 0){
        $(this).siblings(".tweet-char-counter").html(charRemaining)
+       .css("color", "grey");
       } else {
        $(this).siblings(".tweet-char-counter").html(charRemaining)
       .css("color", "red");
