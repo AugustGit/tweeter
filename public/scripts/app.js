@@ -13,9 +13,47 @@ $("#compose").click(function(){
 
   function createTweetElement (tweetObj) {
     $tweet = $("<article>").addClass("tweet");
+    let tweetTime = ""
+
+/*
+    function timeLapsed(inMilliSeconds) {
+
+      const minuteInMilliSeconds = 60 * 1000;
+      const hoursInMilliSeconds = 60 * 60 * 1000;
+      const dayInMilliSeconds = 60 * 60 * 24 * 1000;
+
+      let timeDate = new Date()
+      console.log(timeDate)
+      let currentTime = timeDate.getMilliseconds()
+      let tweetTime = inMilliSeconds
+      let milliSecondsLapsed = tweetTime - currentTime;
+        console.log(moment("20111031", "YYYYMMDD").fromNow())
+        console.log(currentTime)
+console.log(milliSecondsLapsed)
+
+        if (milliSecondsLapsed < 0) {
+          return "Just now";
+        }
+        var days = Math.floor(milliSecondsLapsed  / (dayInMilliSeconds));
+        if(days) {
+         return ("created " + days + " days ago");
+        }
+        var hours = Math.floor( (milliSecondsLapsed  % dayInMilliSeconds) / hoursInMilliSeconds );
+         if(hours) {
+          return ("created " + hours + " hours ago");
+        }
+        var minutes = Math.floor( (milliSecondsLapsed  % hoursInMilliSeconds) / minuteInMilliSeconds);
+          if(minutes) {
+            return ("created " + minutes + " minutes ago");
+        } else {
+            return "test";
+        }
+      }
+*/
+    tweetTime = moment(tweetObj.created_at).fromNow();
+    console.log("tweet time " + tweetTime)
+
     let tweetInfo = `
-
-
           <header>
             <img class="avatar" src=${tweetObj.user.avatars.small}  >
             <span class="user-name"><b>${tweetObj.user.name}</b></span>
@@ -23,16 +61,14 @@ $("#compose").click(function(){
           </header>
         <p class="tweet-text">  ${escape(tweetObj.content.text)}</p>
        <footer>
-         <p id="time-stamp" class="time-stamp">  </p>
-          ${tweetObj.created_at}
+         <p id="time-stamp" class="time-stamp"> ${tweetTime} </p>
+
           <actions class="user-tweet-response">
             <i class="fa fa-flag" aria-hidden="true"></i>
             <i class="fa fa-retweet" aria-hidden="true"></i>
             <i class="fa fa-heart" aria-hidden="true"></i>
           </actions>
         </footer>
-
-
     `;
     $tweet = $tweet.append(tweetInfo);
     return $tweet;
@@ -101,6 +137,65 @@ $("#compose").click(function(){
  });
 
 });
+
+/*
+
+ 1517707187759
+
+  // time conversion constants
+  var msMinute = 60 * 1000;
+  var msHours = 60 * 60 * 1000;
+  var msDay = 60 * 60 * 24 * 1000;
+
+  // helper function for timeSince
+  function formatDate(n, s) {
+    return n.toString() + " " + s + (n > 1 ? "s" : "") + " ago";
+  }
+
+  // return a time since string for the givne time in milliseconds
+  function timeSince(timeInMilliSeconds) {
+    var now = new Date();
+    var then = new Date(timeInMilliSeconds);
+    var differenceInMilliSeconds = now - then;
+    if (differenceInMilliSeconds < 0) {
+      return "Just now";
+    }
+    var days = Math.floor(differenceInMilliSeconds / msDay);
+    if(days) {
+      return formatDate(days, "day");
+    }
+    var hours = Math.floor( (differenceInMilliSeconds % msDay) / msHours );
+    if(hours) {
+      return formatDate(hours, "hour");
+    }
+    var minutes = Math.floor( (differenceInMilliSeconds % msHours) / msMinute);
+    if(minutes) {
+      return formatDate(minutes, "minute");
+    } else {
+      return "Just now";
+    }
+  }
+
+
+  function renderTweet(tweetData) {
+    tweetData.time = timeSince(tweetObj.created_at);
+    var tweet = $(tweetTemplate(tweetData))
+      .prependTo(tweetsContainer);
+
+  }
+
+ var d = new Date(1469433907836);
+
+d.toLocaleString(); // expected output: "7/25/2016, 1:35:07 PM"
+
+d.toLocaleDateString(); // expected output: "7/25/2016"
+
+d.toDateString();  // expected output: "Mon Jul 25 2016"
+
+d.toTimeString(); // expected output: "13:35:07 GMT+0530 (India Standard Time)"
+
+d.toLocaleTimeString(); // expected output: "1:35:07 PM"
+  */
 
 
 
