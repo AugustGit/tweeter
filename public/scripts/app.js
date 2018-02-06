@@ -15,41 +15,7 @@ $("#compose").click(function(){
     $tweet = $("<article>").addClass("tweet");
     let tweetTime = ""
 
-/*
-    function timeLapsed(inMilliSeconds) {
 
-      const minuteInMilliSeconds = 60 * 1000;
-      const hoursInMilliSeconds = 60 * 60 * 1000;
-      const dayInMilliSeconds = 60 * 60 * 24 * 1000;
-
-      let timeDate = new Date()
-      console.log(timeDate)
-      let currentTime = timeDate.getMilliseconds()
-      let tweetTime = inMilliSeconds
-      let milliSecondsLapsed = tweetTime - currentTime;
-        console.log(moment("20111031", "YYYYMMDD").fromNow())
-        console.log(currentTime)
-console.log(milliSecondsLapsed)
-
-        if (milliSecondsLapsed < 0) {
-          return "Just now";
-        }
-        var days = Math.floor(milliSecondsLapsed  / (dayInMilliSeconds));
-        if(days) {
-         return ("created " + days + " days ago");
-        }
-        var hours = Math.floor( (milliSecondsLapsed  % dayInMilliSeconds) / hoursInMilliSeconds );
-         if(hours) {
-          return ("created " + hours + " hours ago");
-        }
-        var minutes = Math.floor( (milliSecondsLapsed  % hoursInMilliSeconds) / minuteInMilliSeconds);
-          if(minutes) {
-            return ("created " + minutes + " minutes ago");
-        } else {
-            return "test";
-        }
-      }
-*/
     tweetTime = moment(tweetObj.created_at).fromNow();
     console.log("tweet time " + tweetTime)
 

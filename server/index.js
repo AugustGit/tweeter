@@ -2,7 +2,7 @@
 
 // Basic express setup:
 
-const PORT          = 3000;
+const PORT          = 3002;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
@@ -29,8 +29,8 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
  const tweetsRoutes = require("./routes/tweets")(DataHelpers);
  app.use("/tweets", tweetsRoutes);
   }
-  process.on('SIGTERM', ()=> {console.log("Mongo close"); db.close()})
-  process.on('SIGINT', ()=> {console.log("Mongo close"); db.close()})
+ // process.on('SIGTERM', ()=> {console.log("Mongo close"); db.close()}) //
+ // process.on('SIGINT', ()=> {console.log("Mongo close"); db.close()})
 
 })
 
