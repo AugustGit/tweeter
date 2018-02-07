@@ -7,7 +7,7 @@ $( document ).ready(function() {
    $('#text-area').on('input change', function() {
     //console.log('#tweet-area')
      var tweetLength = $('#text-area').val().length;
-     charRemaining  = 139 - tweetLength
+     charRemaining  = 140 - tweetLength
 
      if(charRemaining >= 0){
        $(this).siblings(".tweet-char-counter").html(charRemaining)

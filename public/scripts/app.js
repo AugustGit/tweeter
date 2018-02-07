@@ -104,68 +104,6 @@ $("#compose").click(function(){
 
 });
 
-/*
-
- 1517707187759
-
-  // time conversion constants
-  var msMinute = 60 * 1000;
-  var msHours = 60 * 60 * 1000;
-  var msDay = 60 * 60 * 24 * 1000;
-
-  // helper function for timeSince
-  function formatDate(n, s) {
-    return n.toString() + " " + s + (n > 1 ? "s" : "") + " ago";
-  }
-
-  // return a time since string for the givne time in milliseconds
-  function timeSince(timeInMilliSeconds) {
-    var now = new Date();
-    var then = new Date(timeInMilliSeconds);
-    var differenceInMilliSeconds = now - then;
-    if (differenceInMilliSeconds < 0) {
-      return "Just now";
-    }
-    var days = Math.floor(differenceInMilliSeconds / msDay);
-    if(days) {
-      return formatDate(days, "day");
-    }
-    var hours = Math.floor( (differenceInMilliSeconds % msDay) / msHours );
-    if(hours) {
-      return formatDate(hours, "hour");
-    }
-    var minutes = Math.floor( (differenceInMilliSeconds % msHours) / msMinute);
-    if(minutes) {
-      return formatDate(minutes, "minute");
-    } else {
-      return "Just now";
-    }
-  }
-
-
-  function renderTweet(tweetData) {
-    tweetData.time = timeSince(tweetObj.created_at);
-    var tweet = $(tweetTemplate(tweetData))
-      .prependTo(tweetsContainer);
-
-  }
-
- var d = new Date(1469433907836);
-
-d.toLocaleString(); // expected output: "7/25/2016, 1:35:07 PM"
-
-d.toLocaleDateString(); // expected output: "7/25/2016"
-
-d.toDateString();  // expected output: "Mon Jul 25 2016"
-
-d.toTimeString(); // expected output: "13:35:07 GMT+0530 (India Standard Time)"
-
-d.toLocaleTimeString(); // expected output: "1:35:07 PM"
-  */
-
-
-
-
 
 
 
