@@ -23,3 +23,4 @@ Tweeter is a simple, single-page Twitter clone.
 -Express: 4.13.4
 -Md5: 2.1.0
 -Mongodb 2.2.34
+-Moment
