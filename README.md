@@ -4,7 +4,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 
 ## Screenshots
-![Tweets that are too long show the negative character count in red and give an error message until you have shorted to 140characters.](https://github.com/AugustGit/tweeter/blob/master/too%20many%20characters.png?raw=true)
+![Tweets that are too long show the negative character count in red and give an error message until you have shorted to 140characters.](https://github.com/AugustGit/tweeter/blob/master/tweet%20too%20long.png?raw=true)
 
 
 ## Getting Started
