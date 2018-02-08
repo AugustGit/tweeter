@@ -64,12 +64,22 @@
   border-top: 1px solid #B6B7C1   ;
 }
 
-p #time-stamp {
-   font-family: "Roboto Condensed", sans-serif;
+ #time-stamp {
+  display: inline-block;
+  margin: 5px;
+  font-family: "Roboto Condensed", sans-serif;
+  width: 100px; }
+
+.tweet  .user-tweet-response {
+  visibility: hidden;
+  float: right;
+
 }
 
+.tweet:hover .user-tweet-response {
+   visibility: visible;
+   display:inline-block;
+    float: right;
+    margin: 5px;}
 
-.tweets-container  .user-tweet-response {
-  position: absolute;
-  right: 10px;
-}
+
