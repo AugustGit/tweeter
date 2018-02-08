@@ -1,11 +1,9 @@
 
-// A $( document ).ready() block.
 $( document ).ready(function() {
 
-    //console.log( "ready!" );
    var charRemaining = 140
    $('#text-area').on('input change', function() {
-    //console.log('#tweet-area')
+
      var tweetLength = $('#text-area').val().length;
      charRemaining  = 140 - tweetLength
 

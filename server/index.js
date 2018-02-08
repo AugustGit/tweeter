@@ -18,7 +18,6 @@ app.use(express.static("public"));
 
 let dbInstance;
 // The in-memory database of tweets. It's a basic object with an array in it.
-//!! const db = require("./lib/in-memory-db");
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err){
     console.error(`Failed to connect: ${MONGODB_URI}`);
@@ -29,8 +28,8 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
  const tweetsRoutes = require("./routes/tweets")(DataHelpers);
  app.use("/tweets", tweetsRoutes);
   }
- // process.on('SIGTERM', ()=> {console.log("Mongo close"); db.close()}) //
- // process.on('SIGINT', ()=> {console.log("Mongo close"); db.close()})
+process.on('SIGTERM', ()=> {console.log("Mongo close"); db.close()}) //
+process.on('SIGINT', ()=> {console.log("Mongo close"); db.close()})
 
 })
 

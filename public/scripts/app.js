@@ -5,17 +5,18 @@ $( document ).ready(function() {
  $('#text-area').focus();
   getTweets()
 
+//REVEAL OR HIDE THE CREATE TWEET BOX
 $("#compose").click(function(){
         $(".new-tweet").slideToggle("slow");
         $('#text-area').focus();
     });
 
-
+//THIS IS THE NEW TWEET
   function createTweetElement (tweetObj) {
     $tweet = $("<article>").addClass("tweet");
     let tweetTime = ""
 
-
+    //THIS INNER FUNCTION GIVES IT A TIME STAMP...TIME SINCE POST....USES MOMENT
     tweetTime = moment(tweetObj.created_at).fromNow();
     console.log("tweet time " + tweetTime)
 
@@ -39,16 +40,17 @@ $("#compose").click(function(){
     $tweet = $tweet.append(tweetInfo);
     return $tweet;
   }
-
+//THIS IS RENDERS THE TWEET INTO THE CONTAINER it empties the log after so you don't get repeat of past tweets posted
   function renderTweets(tweets) {
    const tweetLog = $('.tweets-container');
    tweetLog.empty()
-
+    //prepend to render ontop of old tweets....append would be for bottom
    for(let tweet in tweets) {
     tweetLog.prepend(createTweetElement(tweets[tweet]));
    }
   }
 
+//#2 1.a
   function postTweets(formDataStr){
    $.ajax({
     url: `/tweets`,
@@ -66,7 +68,7 @@ $("#compose").click(function(){
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
   }
-
+//#3
   function getTweets(){
     $.ajax({
       url: `/tweets`,
@@ -78,6 +80,7 @@ $("#compose").click(function(){
     });
   }
 
+//#1.b Discern appropriate ERROR message for empty tweet or too many characters
   function validateFormData (text) {
     console.log(text)
     let errorMessage = ""
@@ -89,6 +92,7 @@ $("#compose").click(function(){
      return errorMessage
   }
 
+//#1.a WHEN "submit" hit IF above #1.b error parameters not met info in TWEET  is turned into a text string in standard URL-encoded notation(".serialize") & sent to #2 POST Tweet
   $('#tweetbox').on('submit', function (event) {
     event.preventDefault();
     const formDataStr = $(this).find('#text-area').val()
